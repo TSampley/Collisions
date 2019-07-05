@@ -1,10 +1,6 @@
 
+public class Electron {
+	public Electron() {
 
-
-public class Electron
-{
-    public Electron()
-    {
-    	
-    }
+	}
 }
