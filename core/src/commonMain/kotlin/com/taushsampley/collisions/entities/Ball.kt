@@ -30,11 +30,15 @@ class Sphere(
 ) {
 
 }
-interface Point {}
+interface Point {
+    var x: Float
+    var y: Float
+    var z: Float
+}
 // endregion
 
 
-class Ball(
+open class Ball(
     val origin: Point,
     val radius: Float,
     val color: Color
