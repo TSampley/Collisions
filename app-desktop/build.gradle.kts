@@ -8,6 +8,9 @@ kotlin {
     jvmToolchain(17)
 
     dependencies {
+        implementation(project(":core"))
+
+        implementation(compose.desktop.currentOs)
         implementation(compose.runtime)
     }
 }

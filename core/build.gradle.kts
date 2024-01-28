@@ -4,6 +4,9 @@ plugins {
 }
 
 kotlin {
+    jvm {
+        jvmToolchain(17)
+    }
     androidTarget {
         compilations.all {
             kotlinOptions {
