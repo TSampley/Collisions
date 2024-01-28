@@ -16,4 +16,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "Collisions"
 include(":app-android")
+include(":app-desktop")
 include(":core")
