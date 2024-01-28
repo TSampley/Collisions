@@ -1,10 +1,13 @@
 package com.taushsampley.collisions.ui
 
+import androidx.compose.foundation.Canvas
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
 import com.taushsampley.collisions.entities.Color
 import com.taushsampley.collisions.entities.Particle
 import com.taushsampley.collisions.entities.Point
 import com.taushsampley.collisions.entities.Vector
-import kotlin.jvm.JvmStatic
 
 // region Javax types
 interface Timer {
@@ -16,10 +19,78 @@ interface BranchGroup {}
 interface DirectionalLight {}
 // endregion
 
+data class CollisionState(
+    val particles: List<Particle>,
+
+)
+
+
+@Composable
+fun rememberCollisionState(
+    particles: List<Particle> = defaultParticles()
+) = remember(particles) {
+    CollisionState(
+        particles = particles
+    )
+}
+
+
+fun defaultParticles(): List<Particle> {
+    return listOf(
+
+        Particle(
+            Point(-.3f, 0f, .3f),
+            .05f,
+            Color.Blue,
+            Vector(20f, 0f, -20f),
+            1000f,
+            0f
+        ),
+
+        Particle(
+            Point(0f, 0f, 0f),
+            .05f,
+            Color.Yellow,
+            Vector(0f, 0f, 0f),
+            1000f,
+            0f
+        ),
+
+        Particle(
+            Point(.3f, 0f, -.3f),
+            .05f,
+            Color.Magenta,
+            Vector(0f, 0f, 0f),
+            1000f,
+            0f
+        )
+        ,
+        Particle(
+            Point(0f, 0f, 0f),
+            .05f,
+            Color.Gray,
+            Vector(0f, 0f, 0f),
+            2000f,
+            0f
+        )
+    )
+}
+
+@Composable
+fun CollisionView(
+    state: CollisionState = rememberCollisionState(),
+    modifier: Modifier = Modifier,
+) {
+    Canvas(
+        modifier = modifier
+    ) {
+
+    }
+}
+
 class CollisionGrapher /* :javax.swing.JPanel() TODO(create compose CollisionView): */ {
 
 //    var tmr: Timer
-    var balls = mutableListOf<Particle>()
 //    var group: BranchGroup
 //    var VpTG: TransformGroup
 //    var activeUniverse: SimpleUniverse
@@ -28,38 +99,7 @@ class CollisionGrapher /* :javax.swing.JPanel() TODO(create compose CollisionVie
     var yes = false
 
     init {
-        // //balls
-        balls.add(
-            Particle(
-                Point(-.3f, 0f, .3f),
-                .05f,
-                Color.Blue,
-                Vector(20f, 0f, -20f),
-                1000f,
-                0f
-            )
-        )
-        balls.add(
-            Particle(
-                Point(0f, 0f, 0f),
-                .05f,
-                Color.Yellow,
-                Vector(0f, 0f, 0f),
-                1000f,
-                0f
-            )
-        )
-        balls.add(
-            Particle(
-                Point(.3f, 0f, -.3f),
-                .05f,
-                Color.Magenta,
-                Vector(0f, 0f, 0f),
-                1000f,
-                0f
-            )
-        )
-        balls.add(Particle(Point(0f, 0f, 0f), .05f, Color.Gray, Vector(0f, 0f, 0f), 2000f, 0f))
+        // region Legacy setups
 
         // balls.add(new MovingBall(new Point(0, 0, 0), .07, Color.yellow, new
         // Vector(0, 0, 0), 986700000)); //sun
@@ -215,6 +255,8 @@ class CollisionGrapher /* :javax.swing.JPanel() TODO(create compose CollisionVie
         // balls.add(new MovingBall(new Point(i/2.0, j/2.0, 0), .1, new Color(100,
         // 100, 100), new Vector(0, 0, 0), 1000000d));
 
+        // endregion
+
         // -----------------------------------------------------------
 
         // region Java3D rendering setup
@@ -224,7 +266,6 @@ class CollisionGrapher /* :javax.swing.JPanel() TODO(create compose CollisionVie
 //        group = BranchGroup()
 //        group.setCapability(BranchGroup.ALLOW_DETACH)
 //        group.setCapability(BranchGroup.ALLOW_CHILDREN_WRITE)
-        println(balls.size)
 //        for (b in balls) group.addChild(b)
 
         // setup lighting for the world
