@@ -1,4 +1,4 @@
-package com.taushsampley.collisions
+package com.taushsampley.collisions.desktop
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
