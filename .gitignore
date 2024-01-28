@@ -1,4 +1,5 @@
 # Additional Files
+/build/
 /.gradle/
 
 # Copied from https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore:
