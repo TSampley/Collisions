@@ -1,7 +1,6 @@
-# Changes
+# Refactoring
 &lt;Overview of Changes&gt;
-
-Closes &lt;Ticket&gt;
+&lt;Closes &#35;-00&gt;
 
 ## New Components
 &lt;Components Providing New Functionality&gt;
